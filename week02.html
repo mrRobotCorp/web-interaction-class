@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week02</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/95b73245b7.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200&display=swap');
+
+        * {
+            font-family: 'Gothic A1', sans-serif;
+            text-align: center;
+        }
+
+        li {
+            color: #6a00ff;
+            padding: 10px 0;
+            list-style: none;
+            font-weight: bold;
+            display: inline-block;
+            padding: 0 20px;
+        }
+
+        li.active {
+            color: #fff;
+            background-color: #000;
+            font-size: 20px;
+        }
+
+        button {
+            border: 2px solid #222;
+            background-color: #222;
+            color: #fff;
+            border-radius: 18px;
+            padding: 7px 20px;
+            font-size: 16px;
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            border: 2px solid #222;
+            color: #222;
+            background-color: transparent;
+        }
+
+        div#alpha {
+            background-color: #e2e2e2;
+            width: 300px;
+            height: 150px;
+            margin: 30px auto;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s ease-out;
+        }
+
+        div.div0 {
+            box-shadow: 5px 5px 7px #a5a5a5;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            background-color: transparent;
+            transition: all .3s ease-out;
+        }
+
+        #wrap {
+            background-color: transparent;
+            border: 2px solid #bebebe;
+            width: 400px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .3s ease-out;
+            padding: 0 10px;
+        }
+
+        #wrap.color1 {
+            background-color: #6a00ff;
+            border: 2px solid #6a00ff;
+        }
+
+        #wrap.color2 {
+            background-color: #ff00c8;
+            border: 2px solid #ff00c8;
+        }
+
+        #wrap.color3 {
+            background-color: #fff700;
+            border: 2px solid #fff700;
+        }
+
+        #wrap button {
+            margin: 0 10px;
+        }
+
+        button.color {
+            margin: 0 10px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 36%;
+            margin: 40px auto;
+        }
+
+        .search-box .search {
+            border-radius: 20px;
+            border: 2px solid #6a00ff;
+            height: 30px;
+            width: 300px;
+            margin-right: 10px;
+            font-weight: bold;
+            transition: all .3s;
+        }
+
+        .search-box.active .search {
+            box-shadow: 3px 3px 5px #8935ff;
+            background-color: #eee2ff;
+            border: 2px solid #6a00ff;
+        }
+
+        .sBtn:hover {
+            background-color: #6a00ff;
+            color: #fff;
+            border: 2px solid #6a00ff;
+        }
+
+        .search-box.active .sBtn {
+            background-color: #6a00ff;
+            color: #fff;
+            border: 2px solid #6a00ff;
+        }
+
+        .game {
+            position: absolute;
+            left: 50%;
+            top: 110%;
+            width: 700px;
+            transform: translate(-50%, -50%);
+        }
+
+        .game img {
+            width: 20%;
+            margin: 50px 20px;
+            -webkit-animation: vibrate-1 0.3s linear infinite both;
+            animation: vibrate-1 0.3s linear infinite both;
+        }
+
+        img.hide {
+            opacity: 0;
+            animation: hideCha .4s ease-in-out;
+        }
+
+        @-webkit-keyframes hideCha {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(.2);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes vibrate-1 {
+            0% {
+                -webkit-transform: translate(0);
+                transform: translate(0);
+            }
+
+            20% {
+                -webkit-transform: translate(-2px, 2px);
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                -webkit-transform: translate(-2px, -2px);
+                transform: translate(-2px, -2px);
+            }
+
+            60% {
+                -webkit-transform: translate(2px, 2px);
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                -webkit-transform: translate(2px, -2px);
+                transform: translate(2px, -2px);
+            }
+
+            100% {
+                -webkit-transform: translate(0);
+                transform: translate(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li class="active">2</li>
+        <li>3</li>
+        <li id="forth">4</li>
+        <li>5</li>
+    </ul>
+    <br />
+
+    <!-- button type 삽입 권장, 선택 가능 -->
+    <button type="button" class="btn toggle">btn</button>
+    <div id="alpha">ABCDEFG</div>
+
+    <hr />
+    <br />
+    <div id="wrap">
+        <button type="button" class="btn btn1">color1</button>
+        <button type="button" class="btn btn2">color2</button>
+        <button type="button" class="btn btn3">color3</button>
+    </div>
+
+    <hr />
+    <div class="search-box">
+        <input type="text" class="search">
+        <button type="button" class="sBtn"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </div>
+
+    <hr />
+    <div class="game">
+        <span><img src="./source/cont2_1.svg" alt="" class="img img0"></span>
+        <span><img src="./source/cont2_2.svg" alt="" class="img img1"></span>
+        <span><img src="./source/cont2_3.svg" alt="" class="img img2"></span>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            // $('li').click(function() {
+            //     $('li').addClass('active');
+            // })
+
+            // $('li').click(function() {
+            //     $('#forth').addClass('active');
+            // })
+
+            // $('li').click(function() {
+            //     $('.second').addClass('active');
+            // })
+
+            $('li').click(function () {
+                $('li').removeClass('active');
+            })
+
+            // $('button').click(function() {
+            //     $('div').removeClass('div0');
+            // })
+
+            $('.toggle').click(function () {
+                $('#alpha').toggleClass('div0');
+            })
+
+            // -------------------------- color change -------------------------
+
+            $('.btn1').click(function () {
+                $('#wrap').toggleClass('color1');
+                $('#wrap').removeClass('color2');
+                $('#wrap').removeClass('color3');
+            })
+
+            $('.btn2').click(function () {
+                $('#wrap').toggleClass('color2');
+                $('#wrap').removeClass('color1');
+                $('#wrap').removeClass('color3');
+            })
+
+            $('.btn3').click(function () {
+                $('#wrap').toggleClass('color3');
+                $('#wrap').removeClass('color1');
+                $('#wrap').removeClass('color2');
+            })
+
+            // -------------------------- search -------------------------
+            $('.search-box').click(function () {
+                $('.search-box').toggleClass('active');
+            })
+
+            // -------------------------- game -------------------------
+            $('.img0').click(function () {
+                $(this).addClass('hide');
+            })
+            $('.img1').click(function () {
+                $(this).addClass('hide');
+            })
+            $('.img2').click(function () {
+                $(this).addClass('hide');
+            })
+
+            $('.img').click(function () {
+                $(this).addClass('hide');
+            })
+
+
+        });
+    </script>
+
+</body>
+
+</html>
